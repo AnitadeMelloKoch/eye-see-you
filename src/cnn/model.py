@@ -2,7 +2,7 @@ import tensorflow as tf
 
 class CNN(tf.keras.Model):
 
-    def __init__(self, window_size, feature_size):
+    def __init__(self, window_size, feature_size=120):
         super().__init__()
 
         self.window_size = window_size
