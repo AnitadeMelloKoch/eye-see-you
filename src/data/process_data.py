@@ -51,6 +51,9 @@ def window_data(data, window_size):
         samples.append(data[offset:offset+window_size,:])
         labels.append(data[offset+window_size+1])
     
+    samples = np.array(samples)
+    labels = np.array(labels)
+
     return samples, labels
 
 # data_path = '../WebGazer/www/data/FramesDataset'
