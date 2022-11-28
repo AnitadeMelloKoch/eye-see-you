@@ -87,7 +87,7 @@ if __name__ == '__main__':
         '--train_test_split',
         type=float,
         help='Percentage of data that should be set aside for validation',
-        default=0.4
+        default=0.2
     )
 
     args = parser.parse_args()
