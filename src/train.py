@@ -1,4 +1,5 @@
 from src.cnn.model import Split_CNN, CNN
+from src.lstm.model import LSTM
 import tensorflow as tf
 import argparse
 import src.data.process_data as data
@@ -10,6 +11,8 @@ def get_model(model_name, window_size):
         return Split_CNN(window_size)
     elif model_name == 'cnn':
         return CNN(window_size)
+    elif model_name == 'lstm':
+        return LSTM(window_size)
     else:
         raise Exception("Model name not recognised")
 
@@ -30,8 +33,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--model',
-        choices=['cnn','split_cnn'],
-        help='Available models: cnn, split_cnn',
+        choices=['cnn','split_cnn', 'lstm'],
+        help='Available models: cnn, split_cnn, lstm',
         required=True)
     parser.add_argument(
         '--epochs',

@@ -7,7 +7,7 @@ To run a model use the command
 from the base directory.
 
 Available arguments
-- `--model`: Specify what architecture should be used. Available options are `cnn` and `split_cnn`. *Required*
+- `--model`: Specify what architecture should be used. Available options are `cnn`, `split_cnn` and `lstm`. *Required*
 - `--epochs`: Number of epochs to train for. *Default=100*
 - `--learning_rate`: Learning rate to use during training. Currently no learning rate scheduler is used. *Default=0.0005*
 - `--batchsize`: Training batch size. *Default=64*
