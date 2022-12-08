@@ -1,6 +1,8 @@
 import csv
 import glob
 import numpy as np
+from src.data.blink_extraction import extract_blink
+from tqdm import tqdm
 
 fmPosKeys = ['fmPos_%04d' % i for i in range(0, 468)]
 eyeFeaturesKeys = ['eyeFeatures_%04d' % i for i in range(0, 120)]
@@ -25,6 +27,25 @@ def get_data(data_path):
                     features.append(float(row[key])) 
                 eye_features.append(features)
     
+        # eye_features.append([-100]*120)
+                        
+    print('Eye-feature shape', np.array(eye_features).shape)
+    return np.array(eye_features)
+
+def get_blink_data(data_path, blink_base_path="../WebGazer/www/data/src/"):
+    eye_features = []
+    
+    for name in tqdm(list(glob.glob(data_path + '/*.csv'))):
+        print(name)
+        with open(name) as csvfile:
+            data = csv.DictReader(csvfile, fieldnames=fieldnames,delimiter=',',quoting=csv.QUOTE_ALL)
+            for row in tqdm(data):
+                features = []
+                for key in eyeFeaturesKeys:
+                    features.append(float(row[key])) 
+                filename = row["frameImageFile"]
+                features.append(extract_blink(blink_base_path+filename))
+                eye_features.append(features)
         # eye_features.append([-100]*120)
                         
     print('Eye-feature shape', np.array(eye_features).shape)
